@@ -5,6 +5,7 @@
     <component v-for="page in pages"
                :key="page.key"
                :is="page.component"
+               ref="pageComponents"
                :page-params="page.params"></component>
   </transition-group>
 
