@@ -1,6 +1,6 @@
 <template>
 
-  <transition-group name="page-transition" mode="out-in" tag="div"
+  <transition-group :name="name" mode="out-in" tag="div"
                     class="page-stack">
     <component v-for="page in pages"
                :key="page.key"
@@ -15,6 +15,14 @@
   export default {
     props: {
       pages: Array
+    },
+    computed: {
+      name: {
+        get () {
+          const vm = this
+          return vm.$root.config.transition || 'page-transition'
+        }
+      }
     }
   }
 </script>
