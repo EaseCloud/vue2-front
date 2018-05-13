@@ -46,6 +46,16 @@ const http = axios.create({
   // headers: {'X-Custom-Header': 'foobar'}
 })
 
+http.interceptors.response.use(resp => {
+  // console.log(resp)
+  return resp
+}, error => {
+  // console.error('Fuck you')
+  // console.log(error.response.data)
+  if (error.response.data) window.app.notify(error.response.data)
+  return Promise.reject(error)
+})
+
 // TODO: 这里的第二个参数尚未调通，原因是 data() 方法的时机 vm 尚未加载完全
 export default function resource (model, apiRoot) {
   const safeMethod = method => {
